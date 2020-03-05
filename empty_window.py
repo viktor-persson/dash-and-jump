@@ -32,7 +32,7 @@ while not done:
     if (offset > 790):
         offset = 790
         
-     
+
     
 
     screen.fill(BLACK)

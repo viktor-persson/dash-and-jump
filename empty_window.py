@@ -27,7 +27,7 @@ pygame.display.set_caption("Dash n Jump")
 clock = pygame.time.Clock()
 
 isJump = False
-jumpCount = 10
+jumpCount = 7
 
 
 
@@ -50,11 +50,11 @@ while not done:
         if keys[pygame.K_SPACE]:
             isJump = True
     else:
-        if jumpCount >= -10:
+        if jumpCount >= -7:
             y -= (jumpCount * abs(jumpCount)) * 0.5
             jumpCount -= 1
         else: 
-            jumpCount = 10
+            jumpCount = 7
             isJump = False
 
 

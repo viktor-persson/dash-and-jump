@@ -40,9 +40,11 @@ while not done:
             done = True
     
     #Game logic
+
+    
     keys = pygame.key.get_pressed()
 
-    pygame.time.delay(30)
+    
 
     if not(isJump):
         if keys[pygame.K_SPACE]:

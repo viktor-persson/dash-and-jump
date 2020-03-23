@@ -20,10 +20,8 @@ obstacles = obstacles_org.copy()
 size = (800, 500)
 screen = pygame.display.set_mode(size)
 
-x = 0 + offset
+
 y = 420
-width = 20
-height = 25
 
 
 pygame.display.set_caption("Dash n Jump")
@@ -32,6 +30,7 @@ clock = pygame.time.Clock()
 
 isJump = False
 jumpCount = 10
+
 done = False
 
 def draw_obstacle_n_check(x_coord):
@@ -48,11 +47,18 @@ while not done:
             done = True
     
     #Game logic
+
+    
     keys = pygame.key.get_pressed()
+
+    
 
     if not(isJump):
         if keys[pygame.K_SPACE]:
             isJump = True
+        if keys[pygame.K_UP]:
+            isJump = True
+        
     else:
         if jumpCount >= -10:
             y -= (jumpCount * abs(jumpCount)) * 0.5

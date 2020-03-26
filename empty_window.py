@@ -61,7 +61,6 @@ while not done:
 
     
 
-
     for i in range(len(obstacles)):
         obstacles[i] -= 1
         if obstacles[i] < 0:

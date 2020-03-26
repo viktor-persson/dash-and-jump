@@ -10,7 +10,7 @@ ORANGE = (255,100,10)
 background = BLACK
 
 offset = 0
-obstacles_org = [700, 750, 900, 1000, 1050, 1200, 1300, 1350, 1500, 1600, 1700, 1750, 1850]
+obstacles_org = [700, 750, 900, 1000, 1050, 1200, 1300, 1350, 1500, 1650, 1700, 1700, 1850, 1900]
 
 coldis = 30
 
@@ -28,14 +28,15 @@ pygame.display.set_caption("Dash n Jump")
 
 clock = pygame.time.Clock()
 
-isJump = False
+is_jump = False
+isCrash = False
 jumpCount = 7
 
 done = False
 
 def draw_obstacle_n_check(x_coord):
     pygame.draw.polygon(screen, ORANGE, [[x_coord, 400], [x_coord -25, 445], [x_coord + 25, 445]]) 
-    if not isJump and abs(x_coord - 350) < coldis:
+    if not is_jump and abs(x_coord - 350) < coldis:
         return True
     else:
         return False
@@ -51,28 +52,32 @@ while not done:
     
     keys = pygame.key.get_pressed()
 
-    v = 2
+    
 
-    if not(isJump):   
-        if keys[pygame.K_SPACE]:
-            isJump = True
+      
+    if keys[pygame.K_SPACE] and isCrash:
+        isCrash = False
+        background = BLACK
+        obstacles = obstacles_org.copy()
+     
+    if not(is_jump):        
         if keys[pygame.K_UP]:
-            isJump = True
+            is_jump = True
     else:
         if jumpCount >= -7:
             y -= (jumpCount * abs(jumpCount)) * 0.1
             jumpCount -= 0.1
         else: 
             jumpCount = 7
-            isJump = False
+            is_jump = False
 
     
 
-
-    for i in range(len(obstacles)):
-        obstacles[i] -= 1
-        if obstacles[i] < 0:
-            obstacles[i] += 1300
+    if not isCrash:
+        for i in range(len(obstacles)):
+            obstacles[i] -= 1
+            if obstacles[i] < 0:
+                obstacles[i] += 1300
         
     
     #Draw
@@ -88,21 +93,12 @@ while not done:
     for i in range(len(obstacles)):
         if draw_obstacle_n_check(obstacles[i]):
             background = RED
-            
-            
+            isCrash = True
 
-     
-
-   
     
-
-  
-    
-
     pygame.display.flip()
     
     clock.tick(speed)
-
 
 pygame.quit()
 

@@ -5,11 +5,14 @@ WHITE = (255, 255, 255)
 RED = (255, 0 , 0)
 BLUE = (0, 0, 255)
 GREEN = (0, 255, 0)
-
 ORANGE = (255,100,10)
+
+background = BLACK
+
 offset = 0
 obstacles_org = [700, 750, 900, 1000, 1050, 1200, 1300, 1350, 1500, 1600, 1700, 1750, 1850]
 
+coldis = 30
 
 speed = 100
 pygame.init()
@@ -30,8 +33,12 @@ jumpCount = 7
 
 done = False
 
-def draw_obstacle(x_coord):
-    pygame.draw.polygon(screen, ORANGE, [[x_coord, 400], [x_coord -25, 445], [x_coord + 25, 445]])    
+def draw_obstacle_n_check(x_coord):
+    pygame.draw.polygon(screen, ORANGE, [[x_coord, 400], [x_coord -25, 445], [x_coord + 25, 445]]) 
+    if not isJump and abs(x_coord - 350) < coldis:
+        return True
+    else:
+        return False
 
 
 while not done:
@@ -68,7 +75,7 @@ while not done:
         
     
     #Draw
-    screen.fill(BLACK)
+    screen.fill(background)
      
     pygame.draw.line(screen, WHITE, [0, 450], [3000, 450], 10)
     pygame.draw.rect(screen, RED, [350, y, 20, 25], 5)
@@ -78,9 +85,18 @@ while not done:
 #    pygame.draw.polygon(screen, ORANGE,[[o2, 400], [o2 -10, 445], [o2 +10, 445]])
 
     for i in range(len(obstacles)):
-        draw_obstacle(obstacles[i])              
-  
+        if draw_obstacle_n_check(obstacles[i]):
+            background = RED
+            
+            
+
      
+
+   
+    
+
+  
+    
 
     pygame.display.flip()
     

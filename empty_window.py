@@ -22,14 +22,14 @@ screen = pygame.display.set_mode(size)
 
 
 y = 420
-
+height = 20
 
 pygame.display.set_caption("Dash n Jump")
 
 clock = pygame.time.Clock()
 
 isJump = False
-jumpCount = 10
+jumpCount = 7
 
 done = False
 
@@ -51,21 +51,23 @@ while not done:
     
     keys = pygame.key.get_pressed()
 
-    
+    v = 2
 
-    if not(isJump):
+    if not(isJump):   
         if keys[pygame.K_SPACE]:
             isJump = True
         if keys[pygame.K_UP]:
             isJump = True
-        
     else:
-        if jumpCount >= -10:
-            y -= (jumpCount * abs(jumpCount)) * 0.5
-            jumpCount -= 1
+        if jumpCount >= -7:
+            y -= (jumpCount * abs(jumpCount)) * 0.1
+            jumpCount -= 0.1
         else: 
-            jumpCount = 10
+            jumpCount = 7
             isJump = False
+
+    
+
 
     for i in range(len(obstacles)):
         obstacles[i] -= 1

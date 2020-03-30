@@ -1,5 +1,5 @@
 import pygame
-
+import time
 BLACK = (0, 0, 0,)
 WHITE = (255, 255, 255) 
 RED = (255, 0 , 0)
@@ -58,6 +58,8 @@ while not done:
             isJump = True
         if keys[pygame.K_UP]:
             isJump = True
+        
+            
     else:
         if jumpCount >= -7:
             y -= (jumpCount * abs(jumpCount)) * 0.1
@@ -65,9 +67,7 @@ while not done:
         else: 
             jumpCount = 7
             isJump = False
-
-    
-
+   
     for i in range(len(obstacles)):
         obstacles[i] -= 1
         if obstacles[i] < 0:
@@ -87,15 +87,6 @@ while not done:
     for i in range(len(obstacles)):
         if draw_obstacle_n_check(obstacles[i]):
             background = RED
-            
-            
-
-     
-
-   
-    
-
-  
     
 
     pygame.display.flip()

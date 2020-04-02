@@ -1,5 +1,6 @@
 import pygame
 import time
+
 BLACK = (0, 0, 0,)
 WHITE = (255, 255, 255) 
 RED = (255, 0 , 0)
@@ -22,8 +23,9 @@ screen = pygame.display.set_mode(size)
 
 
 y = 420
-height = 20
-wide = 25
+height = 25
+wide = 20
+
 pygame.display.set_caption("Dash n Jump")
 
 clock = pygame.time.Clock()
@@ -41,20 +43,14 @@ def draw_obstacle_n_check(x_coord):
     else:
         return False
 
-
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
     
     #Game logic
-
-    
     keys = pygame.key.get_pressed()
 
-    
-
-      
     if keys[pygame.K_SPACE] and isCrash:
         isCrash = False
         background = BLACK
@@ -75,6 +71,7 @@ while not done:
             is_jump = False
 
     
+
     if not isCrash:
         for i in range(len(obstacles)):
             obstacles[i] -= 1
@@ -86,15 +83,15 @@ while not done:
     screen.fill(background)
      
     pygame.draw.line(screen, WHITE, [0, 450], [3000, 450], 10)
-    pygame.draw.rect(screen, RED, [350, y, height, wide], 5) 
+    pygame.draw.rect(screen, RED, [350, y, wide, height], 5)
+    pygame.draw.ellipse(screen, BLUE, [350, y, wide, height], 5)
     
     if keys[pygame.K_DOWN]:
+        height = 15
+        wide = 20
+    else:
         height = 25
-        wide =15
-    else: 
-        height = 20
-        wide = 25
-
+        wide = 20
 #    pygame.draw.polygon(screen, ORANGE,[[o1, 400], [o1 -10, 445], [o1 +10, 445]])
 #    pygame.draw.polygon(screen, ORANGE,[[o2, 400], [o2 -10, 445], [o2 +10, 445]])
 
@@ -103,12 +100,6 @@ while not done:
             background = RED
             isCrash = True
 
-
-    font = pygame.font.SysFont('Calibri', 75, True, False)
- 
-    text = font.render("LET'S JUMP!", True, WHITE)
- 
-    screen.blit(text, [200, 100])
     
     pygame.display.flip()
     

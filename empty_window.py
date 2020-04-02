@@ -103,6 +103,12 @@ while not done:
             background = RED
             isCrash = True
 
+
+    font = pygame.font.SysFont('Calibri', 75, True, False)
+ 
+    text = font.render("LET'S JUMP!", True, WHITE)
+ 
+    screen.blit(text, [200, 100])
     
     pygame.display.flip()
     

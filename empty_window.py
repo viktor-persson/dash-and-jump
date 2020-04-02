@@ -95,6 +95,16 @@ while not done:
             background = RED
             isCrash = True
 
+# Select the font to use, size, bold, italics
+    font = pygame.font.SysFont('Calibri', 75, True, False)
+ 
+    # Render the text. "True" means anti-aliased text.
+    # Black is the color. This creates an image of the
+    # letters, but does not put it on the screen
+    text = font.render("LET'S JUMP!", True, WHITE)
+ 
+    # Put the image of the text on the screen at 250x250
+    screen.blit(text, [200, 100])
     
     pygame.display.flip()
     

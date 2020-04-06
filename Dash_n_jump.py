@@ -112,12 +112,13 @@ while not done:
             isCrash = True
 
 
-    font = pygame.font.SysFont('Calibri', 75, True, False)
-    text1 = font.render("LET'S JUMP", True, WHITE)
-    text2 = font.render("score = " + str(score), True, WHITE)
+    font1 = pygame.font.SysFont('Calibri', 75, True, False)
+    font2 = pygame.font.SysFont('Calibri', 40, True, False)
+    text1 = font1.render("LET'S JUMP", True, WHITE)
+    text2 = font2.render(str(score) + " M", True, WHITE)
  
     screen.blit(text1, [200, 100])
-    screen.blit(text2, [200, 150])
+    screen.blit(text2, [60, 30])
     
     pygame.display.flip()
     if not isCrash:

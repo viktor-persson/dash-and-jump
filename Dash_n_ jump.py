@@ -34,6 +34,7 @@ isCrash = False
 jumpCount = 7
 
 done = False
+pygame.mixer.init()
 pygame.mixer.music.load('MassiveEdge.wav')
 pygame.mixer.music.play(-1)
 

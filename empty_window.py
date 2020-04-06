@@ -16,16 +16,14 @@ obstacles_org = [700, 750, 900, 1000, 1050, 1200, 1300, 1350, 1500, 1650, 1700, 
 coldis = 30
 
 speed = 100
-pygame.init()
-obstacles = obstacles_org.copy()
-size = (800, 500)
-screen = pygame.display.set_mode(size)
 
 
+score = 0
 y = 420
 height = 25
 wide = 20
 
+pygame.init()
 pygame.display.set_caption("Dash n Jump")
 
 clock = pygame.time.Clock()
@@ -35,6 +33,9 @@ isCrash = False
 jumpCount = 7
 
 done = False
+pygame.mixer.init()
+pygame.mixer.music.load('MassiveEdge.wav')
+pygame.mixer.musik.play(-1)
 
 def draw_obstacle_n_check(x_coord):
     pygame.draw.polygon(screen, ORANGE, [[x_coord, 400], [x_coord -25, 445], [x_coord + 25, 445]]) 
@@ -53,6 +54,7 @@ while not done:
 
     if keys[pygame.K_SPACE] and isCrash:
         isCrash = False
+        pygame.mixer.musik.play(-1)
         background = BLACK
         obstacles = obstacles_org.copy()
      
@@ -98,11 +100,19 @@ while not done:
     for i in range(len(obstacles)):
         if draw_obstacle_n_check(obstacles[i]):
             background = RED
+            pygame.mixer.music.stop()
             isCrash = True
 
-    
+    font = pygame.font.SysFont('Calibri', 75, True, False)
+    text1 = font.render("LET'S JUMP", True, WHITE)
+    text2 = font.render(str(score), True, WHITE + " M")
+
+    screen.blit(text1, [200, 100])
+    screen.blit(text2, [200, 150])
+
     pygame.display.flip()
-    
+    if not isCrash:
+        score +=1
     clock.tick(speed)
 
 pygame.quit()

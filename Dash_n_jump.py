@@ -14,6 +14,7 @@ obstacles_org = [700, 750, 900, 1000, 1050, 1200, 1300, 1350, 1500, 1650, 1700, 
 
 coldis = 30
 
+score = 0
 speed = 100
 pygame.init()
 obstacles = obstacles_org.copy()
@@ -33,6 +34,10 @@ isCrash = False
 jumpCount = 7
 
 done = False
+pygame.mixer.music.load('MassiveEdge.wav')
+pygame.mixer.music.play(-1)
+
+
 
 def draw_obstacle_n_check(x_coord):
     pygame.draw.polygon(screen, ORANGE, [[x_coord, 400], [x_coord -25, 445], [x_coord + 25, 445]]) 
@@ -56,8 +61,10 @@ while not done:
 
       
     if keys[pygame.K_SPACE] and isCrash:
+        score = 0
         isCrash = False
         background = BLACK
+        pygame.mixer.music.play(-1)
         obstacles = obstacles_org.copy()
      
     if not(is_jump):        
@@ -101,17 +108,21 @@ while not done:
     for i in range(len(obstacles)):
         if draw_obstacle_n_check(obstacles[i]):
             background = RED
+            pygame.mixer.music.stop()
             isCrash = True
 
 
     font = pygame.font.SysFont('Calibri', 75, True, False)
+    text1 = font.render("LET'S JUMP", True, WHITE)
+    text2 = font.render("score = " + str(score), True, WHITE)
  
-    text = font.render("LET'S JUMP!", True, WHITE)
- 
-    screen.blit(text, [200, 100])
+    screen.blit(text1, [200, 100])
+    screen.blit(text2, [200, 150])
     
     pygame.display.flip()
-    
+    if not isCrash:
+        score += 1
+        
     clock.tick(speed)
 
 pygame.quit()

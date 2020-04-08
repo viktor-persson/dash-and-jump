@@ -21,7 +21,7 @@ obstacles = obstacles_org.copy()
 size = (800, 500)
 screen = pygame.display.set_mode(size)
 
-
+x = 350
 y = 420
 height = 25
 wide = 20
@@ -83,12 +83,14 @@ while not done:
     screen.fill(background)
      
     pygame.draw.line(screen, WHITE, [0, 450], [3000, 450], 10)
-    pygame.draw.rect(screen, RED, [350, y, wide, height], 5)
-    pygame.draw.ellipse(screen, BLUE, [350, y, wide, height], 5)
+    pygame.draw.rect(screen, RED, [x, y, wide, height], 5)
+    pygame.draw.ellipse(screen, BLUE, [x, y, wide, height], 5)
     
     if keys[pygame.K_DOWN]:
         height = 15
         wide = 20
+        x = 350
+        y = 430
     else:
         height = 25
         wide = 20

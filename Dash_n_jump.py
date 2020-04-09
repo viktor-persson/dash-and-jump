@@ -118,12 +118,25 @@ while not done:
 
     font1 = pygame.font.SysFont('Calibri', 75, True, False)
     font2 = pygame.font.SysFont('Calibri', 40, True, False)
+    font3 = pygame.font.SysFont('Calibri', 15, True, False)
+    font4 = pygame.font.SysFont('Calibri', 15, True, False)
+    font5 = pygame.font.SysFont('Calibri', 15, True, False)
     text1 = font1.render("LET'S JUMP", True, WHITE)
     text2 = font2.render(str(score) + " M", True, WHITE)
+    text3 = font3.render("Press Keyup = Jump", True, WHITE)
+    text4 = font4.render("Press Keydown = Dash", True, WHITE)
+    text5 = font5.render("Press Space = Play Again", True, WHITE)
+    
  
     screen.blit(text1, [200, 100])
     screen.blit(text2, [60, 30])
+    screen.blit(text3, [20, 70])
+    screen.blit(text4, [20, 87])
+    screen.blit(text5, [20, 104])
     
+
+
+
     pygame.display.flip()
     if not isCrash:
         score += 1

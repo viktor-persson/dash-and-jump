@@ -46,6 +46,13 @@ def draw_obstacle_n_check(x_coord):
     else:
         return False
 
+def draw_obstacle_n_check2(x_coord):
+    pygame.draw.polygon(screen, ORANGE, [[x_coord, 375], [x_coord -100, -300], [x_coord + 100, -300]])
+    if not is_jump and abs(x_coord - 350) < coldis:
+        return True
+    else:
+        return False
+
 
 while not done:
     for event in pygame.event.get():

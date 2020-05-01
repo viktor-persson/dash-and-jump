@@ -16,7 +16,8 @@ ob_l = 345
 offset = 0
 obstacles_org = [[700, ob_l], [750, ob_l], [900,ob_h], [1000,ob_l], [1050,ob_l], [1200,ob_h], [1300,ob_l], [1350,ob_l], [1500,ob_l], [1650,ob_l], [1700,ob_l] , [1850,ob_h], [1900,ob_h]]
 obstacles = []
-coldis = 30
+coldis_l = 30
+coldis_h = 20
 
 score = 0
 speed = 100
@@ -46,10 +47,13 @@ pygame.mixer.music.play(-1)
 
 
 def draw_obstacle_n_check(coord):
-    pygame.draw.polygon(screen, ORANGE, [[coord[0], coord[1]], [coord[0] -25, coord[1] + 100], [coord[0] + 25, coord[1] + 100]]) 
-    if not is_jump and abs(coord[0] - 350) < coldis and coord[1] == ob_l :
+    if coord[1] == ob_l:
+        pygame.draw.polygon(screen, ORANGE, [[coord[0], coord[1]], [coord[0] -25, coord[1] + 100], [coord[0] + 25, coord[1] + 100]]) 
+    else:     
+        pygame.draw.polygon(screen, ORANGE, [[coord[0], coord[1] + 100], [coord[0] -25, coord[1]], [coord[0] + 25, coord[1]]])
+    if not is_jump and abs(coord[0] - 350) < coldis_l and coord[1] == ob_l :
         return True
-    elif not is_dash and abs(coord[0] - 350) < coldis and coord[1] == ob_h:
+    elif not is_dash and abs(coord[0] - 350) < coldis_h and coord[1] == ob_h:
         return True
 
     else:
